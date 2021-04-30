@@ -1,19 +1,17 @@
 package com.springboot.basics.springbootintro;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/books")
 public class BooksController {
 
-    @GetMapping("/books")
+    @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = new ArrayList<Book>();
 
@@ -23,7 +21,7 @@ public class BooksController {
         return ResponseEntity.status(HttpURLConnection.HTTP_OK).body(books);
     }
 
-    @PostMapping("/books")
+    @PostMapping
     public ResponseEntity<Book> saveBook(@RequestBody Book requestBook) {
 
         System.out.println("Book saved!");
